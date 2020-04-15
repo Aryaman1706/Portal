@@ -1,5 +1,6 @@
 const express=require('express');
 const mongoose=require('mongoose');
+mongoose.set('useFindAndModify', false);
 const { User,validate,userSchema}=require('../model/users');
 
 const router=express.Router();
@@ -20,6 +21,17 @@ router.post('/',async(req,res)=>{
     });
     
     user=await user.save();
+    res.send(user);
+});
+
+router.put('/:id',async (req,res)=>{
+    const user=await User.findByIdAndUpdate(req.params.id,{
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        password: req.body.password,
+        position: req.body.position
+    },{new:true})
     res.send(user);
 });
 

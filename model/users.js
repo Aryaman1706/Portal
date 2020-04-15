@@ -22,7 +22,7 @@ const userSchema=new mongoose.Schema({
     phone:{
         type:String,
         required:true,
-        unique:true,
+        // unique:true,
         minlength:10
     },
     position:{
@@ -40,7 +40,7 @@ const userSchema=new mongoose.Schema({
 // generate jwt
 userSchema.methods.generateAuthToken=function()
 {
-    const token=jwt.sign({password:this.password,email:this.email,_id:this._id},"portal");
+    const token=jwt.sign({password:this.password,email:this.email,_id:this._id,position:this.position},"portal");
     return token;
 }
 

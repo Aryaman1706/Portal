@@ -14,10 +14,15 @@ const messageSchema= new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    userCategory:{
+    to:{
         type:String,
         default:"Member",
         enum:["Member","Core","EXBO"]
+    },
+    from:{
+        type:String,
+        default:"Core",
+        enum:["Core","EXBO"]
     }
 });
 
