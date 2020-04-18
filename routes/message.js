@@ -1,6 +1,7 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const {Message,validate}=require('../model/messages');
+const sendMail=require('../functions/sendMail');
 
 const auth=require('../middleware/auth');
 const position=require('../middleware/position');
@@ -16,6 +17,10 @@ router.post('/',[auth,position],async(req,res)=>{
       from:req.user.position
   });
     message=await message.save();
+
+    // send mail to all
+    sendMail(message);
+
     res.send(message);
 });
 
