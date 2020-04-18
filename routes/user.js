@@ -42,9 +42,9 @@ router.put('/addmarks/:id',async(req,res)=>{
     res.send(user);
 });
 
-router.put('/editmarks/:id',async(req,res)=>{
+router.put('/deletemarks/:id',async(req,res)=>{
     let user= await User.findById(req.params.id);
-    user.marks[user.marks.length-1]=req.body.marks;
+    user.marks.pop();
     user=await user.save();
     res.send(user);
 });
