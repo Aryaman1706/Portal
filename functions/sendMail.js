@@ -3,11 +3,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const {User}=require('../model/users');
 const {Message}=require('../model/messages');
-
-
-    
-  
-   
+const Nexmo = require('nexmo');
 
 async function sendMail(message)
 {
@@ -15,7 +11,9 @@ async function sendMail(message)
      console.log(users);
      console.log(message);
     users.forEach(
-        async function (user) {
+        
+      // NODEMAILER WORK
+      async function (user) {
             let testAccount = await nodemailer.createTestAccount();
             let transporter = nodemailer.createTransport({
               host: 'smtp.gmail.com',
@@ -41,11 +39,8 @@ async function sendMail(message)
     )
 
 }
-/*
-	"subject":"hello hello",
-	"statement":"hello hello",
-	"to":"Member",
-	"from":"Core"
-*/
+
+
+
 
 module.exports=sendMail;

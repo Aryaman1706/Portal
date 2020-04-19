@@ -2,6 +2,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const {Message,validate}=require('../model/messages');
 const sendMail=require('../functions/sendMail');
+const sendText=require('../functions/sendText');
 
 const auth=require('../middleware/auth');
 const position=require('../middleware/position');
@@ -18,8 +19,11 @@ router.post('/',[auth,position],async(req,res)=>{
   });
     message=await message.save();
 
-    // send mail to all
+    // send mail to all // nodemailer
     sendMail(message);
+
+    // send text to all // nexmo
+    sendText(message);
 
     res.send(message);
 });
