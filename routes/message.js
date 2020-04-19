@@ -23,14 +23,15 @@ router.post('/',[auth,position],async(req,res)=>{
     sendMail(message);
 
     // // send text to all // nexmo
-    // sendText(message);               <-- this is trial only DO NOT USE IN DEVELOPMENT/TESTING (IT IS WORKING)
+    // sendText(message);               
+    //<-- this is trial only DO NOT USE IN DEVELOPMENT/TESTING (IT IS WORKING)
 
     res.send(message);
 });
 
 // get all the for my position messages
 router.get('/',auth,async(req,res)=>{
-  const messages=await Message.find({to:req.user.position}).sort('date');
+  const messages=await Message.find({to:req.user.position}).sort('-date');
   res.send(messages);
 });
 

@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Joi=require('joi');
+const config= require('config');
 
 const jwt=require('jsonwebtoken');
 
@@ -40,7 +41,7 @@ const userSchema=new mongoose.Schema({
 // generate jwt
 userSchema.methods.generateAuthToken=function()
 {
-    const token=jwt.sign({password:this.password,email:this.email,_id:this._id,position:this.position},"portal");
+    const token=jwt.sign({password:this.password,email:this.email,_id:this._id,position:this.position},config.get('privateKey'));
     return token;
 }
 

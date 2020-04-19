@@ -5,6 +5,8 @@ const {User}=require('../model/users');
 const {Message}=require('../model/messages');
 const Nexmo = require('nexmo');
 
+const config= require('config');
+
 async function sendMail(message)
 {
     const users=await User.find({position:message.to});

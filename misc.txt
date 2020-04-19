@@ -1,0 +1,2 @@
+apiKey: '042eafa6'
+apiSecret: 'NlJetIIJ2cUX3RmW'
