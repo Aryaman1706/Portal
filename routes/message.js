@@ -22,8 +22,8 @@ router.post('/',[auth,position],async(req,res)=>{
     // send mail to all // nodemailer
     sendMail(message);
 
-    // send text to all // nexmo
-    sendText(message);
+    // // send text to all // nexmo
+    // sendText(message);               <-- this is trial only DO NOT USE IN DEVELOPMENT/TESTING (IT IS WORKING)
 
     res.send(message);
 });
