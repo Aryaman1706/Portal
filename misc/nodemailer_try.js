@@ -36,3 +36,6 @@ async function main() {
 }
 
 main().catch(console.error);
+
+// clientID='706694732553-3irf0hv0oj42683d7gig1eo8ml5e4u5m.apps.googleusercontent.com'
+// clientSecret='V_qKZI1Ecj-9-Ur-COnfXd1n'

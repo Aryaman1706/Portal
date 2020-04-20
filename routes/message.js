@@ -9,6 +9,14 @@ const position=require('../middleware/position');
  
 const router=express.Router();
 
+
+// get all the for my position messages
+router.get('/',auth,async(req,res)=>{
+  const messages=await Message.find({to:req.user.position}).sort('-date');
+  res.send(messages);
+});
+
+
 // anyone authorised with position= core||exbo can post the message
 router.post('/',[auth,position],async(req,res)=>{
     let message=new Message({
@@ -19,21 +27,16 @@ router.post('/',[auth,position],async(req,res)=>{
   });
     message=await message.save();
 
-    // send mail to all // nodemailer
+    // send mail via nodemailer
     sendMail(message);
 
-    // // send text to all // nexmo
-    // sendText(message);               
-    //<-- this is trial only DO NOT USE IN DEVELOPMENT/TESTING (IT IS WORKING)
-
+    // send text via nexmo
+    sendText(message);        
+    
     res.send(message);
 });
 
-// get all the for my position messages
-router.get('/',auth,async(req,res)=>{
-  const messages=await Message.find({to:req.user.position}).sort('-date');
-  res.send(messages);
-});
+
 
 // only the position who posted can change
 router.put('/:id',auth,async(req,res)=>{

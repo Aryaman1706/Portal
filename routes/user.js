@@ -35,6 +35,8 @@ router.put('/:id',async (req,res)=>{
     res.send(user);
 });
 
+
+// for manipulating marks
 router.put('/addmarks/:id',async(req,res)=>{
     let user= await User.findById(req.params.id);
     user.marks.push(req.body.marks);
