@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Joi=require('joi');
+const moment=require('moment');
 
 const messageSchema= new mongoose.Schema({
     subject:{
@@ -11,8 +12,8 @@ const messageSchema= new mongoose.Schema({
         required:true
     },
     date:{
-        type:Date,
-        default:Date.now
+        type:String,
+        default:moment().format('lll')
     },
     to:{
         type:String,
