@@ -18,7 +18,7 @@ router.get('/',auth,async(req,res)=>{
 
 
 // anyone authorised with position= core||exbo can post the message
-router.post('/',[auth,position],async(req,res)=>{
+router.post('/',auth,async(req,res)=>{
     let message=new Message({
       subject: req.body.subject,
       statement:req.body.statement,
