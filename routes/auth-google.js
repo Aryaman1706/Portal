@@ -26,7 +26,7 @@ router.get('/redirect', passport.authenticate('google'), (req, res) => {
     
     const user=req.user;
     const token=user.generateAuthToken();
-    res.send(token);s
+    res.send(token);
 
     
 });
